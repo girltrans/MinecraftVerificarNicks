@@ -44,7 +44,7 @@
 <script>
     document.getElementById("nickListInput").addEventListener("input", function () {
         const linhas = this.value.split("\n");
-        const ajustadas = linhas.map(linha => linha.slice(0, 16)); // Corta cada linha para máx 16 caracteres
+        const ajustadas = linhas.map(linha => linha.slice(0, 16));
         this.value = ajustadas.join("\n");
     });
     const modoRadios = document.querySelectorAll('input[name="modo"]');
