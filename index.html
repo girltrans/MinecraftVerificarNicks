@@ -34,7 +34,7 @@
             <button onclick="verificacaoMassa()">Iniciar verificação</button>
     </div>
     <div class="form-container hidden" id="form-lista">
-        <label>Cole os nicks abaixo (até 16 caracteres)(1 por linha):</label>
+        <label>Cole os nicks abaixo (até 16 caracteres)(1 por linha shift + enter):</label>
         <textarea id="nickListInput" rows="6" style="width:100%; background-color:#1e1e1e; color:#E8B901; border:1px solid #8B1616;"></textarea>
         <button onclick="verificarLista()">Verificar Lista</button>
         <button class="hidden" id="btnDownload" onclick="baixarDisponiveis()">📥 Baixar disponíveis (.txt)</button>
@@ -126,6 +126,9 @@ if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
         <a href="https://forum.mush.com.br/user/${nick}" target="_blank">
             <img src="./icons/mushmcforum.png" alt="MushMC Fórum" title="MushMC Fórum">
         </a>
+        <a href="https://flamemc.com.br/player/${nick}" target="_blank">
+            <img src="./icons/flamemc.png" alt="FlameMC Perfil" title="FlameMC Perfil">
+        </a>
         <a href="https://www.badlion.net/profile/minecraft/${nick}" target="_blank">
             <img src="./icons/badlion.png" alt="BadLion" title="BadLion">
         </a>
@@ -175,6 +178,9 @@ if (data?.cache?.HIT === false && data?.status === "ERR" && data?.id === null) {
         </a>
         <a href="https://forum.mush.com.br/user/${nick}" target="_blank">
             <img src="./icons/mushmcforum.png" alt="MushMC Fórum" title="MushMC Fórum">
+        </a>
+        <a href="https://flamemc.com.br/player/${nick}" target="_blank">
+            <img src="./icons/flamemc.png" alt="FlameMC Perfil" title="FlameMC Perfil">
         </a>
         <a href="https://www.badlion.net/profile/minecraft/${nick}" target="_blank">
             <img src="./icons/badlion.png" alt="BadLion" title="BadLion">
@@ -308,6 +314,9 @@ const disponiveisHTML = disponiveisGlobal.map(nick =>
         <a href="https://forum.mush.com.br/user/${nick}" target="_blank">
             <img src="./icons/mushmcforum.png" alt="MushMC Fórum" title="MushMC Fórum">
         </a>
+        <a href="https://flamemc.com.br/player/${nick}" target="_blank">
+            <img src="./icons/flamemc.png" alt="FlameMC Perfil" title="FlameMC Perfil">
+        </a>
         <a href="https://www.badlion.net/profile/minecraft/${nick}" target="_blank">
             <img src="./icons/badlion.png" alt="BadLion" title="BadLion">
         </a>
@@ -363,6 +372,9 @@ const ocupadosHTML = nicks.map(nick =>
         <a href="https://forum.mush.com.br/user/${nick}" target="_blank">
             <img src="./icons/mushmcforum.png" alt="MushMC Fórum" title="MushMC Fórum">
         </a>
+        <a href="https://flamemc.com.br/player/${nick}" target="_blank">
+            <img src="./icons/flamemc.png" alt="FlameMC Perfil" title="FlameMC Perfil">
+        </a>
         <a href="https://www.badlion.net/profile/minecraft/${nick}" target="_blank">
             <img src="./icons/badlion.png" alt="BadLion" title="BadLion">
         </a>
@@ -387,6 +399,30 @@ document.getElementById("btnDownload").classList.add("hidden");
         URL.revokeObjectURL(url);
     }
 
+</script>
+<script>
+    document.getElementById("nick").addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            verificarNick();
+        }
+    });
+    document.getElementById("chars_count").addEventListener("keydown", handleEnterMassa);
+    document.getElementById("char_type").addEventListener("keydown", handleEnterMassa);
+    document.getElementById("threads").addEventListener("keydown", handleEnterMassa);
+
+    function handleEnterMassa(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            verificacaoMassa();
+        }
+    }
+	document.getElementById("nickListInput").addEventListener("keydown", function (event) {
+        if (event.key === "Enter" && event.shiftKey === false) {
+            event.preventDefault();
+            verificarLista();
+        }
+    });
 </script>
 </body>
 </html>
